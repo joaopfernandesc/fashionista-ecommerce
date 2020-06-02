@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Overlock');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+
+body {
+  padding-top: 56px;
+  font-family: 'Overlock', sans-serif;
+  background-image: linear-gradient(#FFADAD, #805D93);
+  color: #FFFFFC;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.container {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+@media screen and(min-width: 1279px){
+  .container {
+    width: 1279px;
+  }
+}
