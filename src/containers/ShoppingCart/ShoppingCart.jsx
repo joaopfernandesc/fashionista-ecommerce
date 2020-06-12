@@ -52,7 +52,7 @@ const ShoppingCart = () => {
                     </div>
                 </header>
             </div>
-            <div className="sidebar__body">
+            <div className="sidebar__body sidebar__body--shopping-cart">
                 {
                     skus && 
                     skus.map(item => {
