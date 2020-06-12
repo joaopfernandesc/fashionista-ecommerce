@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 
@@ -8,15 +9,18 @@ import logo from '../../assets/img/logo.png';
 
 
 import './Topbar.scss';
+import { handleSearchForm, handleShoppingCart } from '../../actions';
 
 const Topbar = () => {
-    const [openShoppingCart, setOpenShoppingCart] = useState(false);
-    const [openSearch, setOpenSearch] = useState(true);
+    const dispatch = useDispatch()
+    const { totalItems } = useSelector(state => state)
 
-    function handleShoppingCart(event) {
+    function handleOpenCart() {
+        dispatch(handleShoppingCart(true))
     }
 
-    function handleOpenSearch(event) {
+    function handleOpenSearch() {
+        dispatch(handleSearchForm(true))
     }
     return (
         <header className="topbar" data-testid="topbar">
@@ -28,8 +32,11 @@ const Topbar = () => {
                     <button className="topbar__icon" onClick={(event) => handleOpenSearch(event)}>
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
-                    <button className="topbar__icon" onClick={(event) => handleShoppingCart(event)}>
+                    <button className="topbar__icon" onClick={(event) => handleOpenCart(event)}>
                         <FontAwesomeIcon icon={faShoppingBag} />
+                        {
+                            totalItems > 0 && <div>{totalItems}</div>
+                        }
                     </button>
                 </div>
             </div>

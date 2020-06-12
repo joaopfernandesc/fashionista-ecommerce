@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
 import Product from '../../components/Product'
 
@@ -14,7 +13,7 @@ function Products({ products }) {
                     ?
                     products.map(product => <Product product={product} key={product.code_color}/>)
                     :
-                    <div>Não há produtos para exibir</div>
+                    <div className="loader"></div>
                 }
             </section>
         </div>

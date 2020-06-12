@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Products from '../../containers/Products';
+import React from 'react';
+import ProductDetails from '../../components/ProductDetails'
 
-
-const Product = () => {
-
+const ProductRoute = () => {
 
     return (
         <div className="container">
+            <ProductDetails />
         </div>
     );
 }
 
-export default Product;
+export default ProductRoute;

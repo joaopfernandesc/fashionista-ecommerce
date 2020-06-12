@@ -1,40 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 
 import './Product.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import unavailabe from '../../assets/img/not_available.png'
 
-function Product({product}) {
-    const [sizesAvailable, setSizesAvailable] = useState([])
+const Product =({product}) => {
 
-    useEffect(() => {
-        let sizes = [];
-        product.sizes.map(size => {
-            if (size.available) {
-                sizes.push(size.size)
-            }
-        })
-        setSizesAvailable(sizes)
-    }, [])
 
     return (
         <article className="product__box">
-            <Link to={`product/${product.name.toLowerCase().replace(/ /g, "-")}`}>
+            <Link to={`/product/${product.name.toLowerCase().replace(/ /g, "-")+ '-' + product.code_color}`}>
                 <figure className="product__image">
-                    {
-                        product.image ?
-                        <img src={product.image} alt={product.name}/>
-                        :
-                        <div className="product__unavailable">
-                            <div className="product__unavailable--text">
-                                <p>
-                                    Imagem indisponível.
-                                    <br></br><FontAwesomeIcon icon={faHeartBroken} key="heart-broken"/>
-                                </p>
-                            </div>
-                        </div>
-                    }
+                        <img src={product.image ? product.image : unavailabe} alt={product.name}/>
+                        
                     {product.discount_percentage !== ""  && 
                         <span className="product__image--discount">
                             {product.discount_percentage} OFF

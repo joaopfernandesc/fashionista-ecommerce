@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Products from '../../containers/Products';
+import { useSelector } from 'react-redux';
 
 const MainRoute = () => {
-    const [products, setProducts] = useState([])
+    const store = useSelector(state => state.products)
 
-    useEffect(() => {
-        fetch('https://5e9935925eabe7001681c856.mockapi.io/api/v1/catalog')
-            .then((res) => res.json())
-            .then(data => setProducts(data));
-    }, [])
-
-    return (<div className="container">
-        <Products products={products}/>
+    return (
+    <div className="container">
+        <Products products={store}/>
     </div>)
 ;}
 

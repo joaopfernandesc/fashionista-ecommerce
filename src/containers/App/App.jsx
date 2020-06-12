@@ -2,26 +2,33 @@ import React, {useEffect} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Topbar from '../../components/Topbar';
-
+import SearchForm from '../../containers/SearchForm';
 import Routes from '../../routes';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from "../../actions"
+import { loadProducts } from '../../actions'
 
 import './App.scss';
+import ShoppingCart from '../ShoppingCart';
 
 function App() {
   const store = useSelector(state => state)
   const dispatch = useDispatch()
+
   console.log(store)
+
   useEffect(() => {
-    dispatch(addToCart())
-  }, [])
+      fetch('https://5e9935925eabe7001681c856.mockapi.io/api/v1/catalog')
+          .then((res) => res.json())
+          .then(data => dispatch(loadProducts(data)));
+  }, [dispatch])
 
   return (
-    <div className="App">
+    <div className={ (store.openSearch || store.openShoppingCart) ? "App App--is-open" : "App"}>
       <BrowserRouter>
         <Topbar/>
+        <SearchForm/>
+        <ShoppingCart/>
         <Routes/>
       </BrowserRouter>
     </div>
