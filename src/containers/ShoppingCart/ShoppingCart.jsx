@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { handleShoppingCart } from "../../actions"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +9,7 @@ import './ShoppingCart.scss'
 
 const ShoppingCart = () => {
     const { openShoppingCart, shoppingCart, subtotal, products } = useSelector(state => state)
-
+    const [skus, setSkus] = useState([])
     const dispatch = useDispatch()
 
     function getItemInfo(item) {
@@ -28,17 +28,22 @@ const ShoppingCart = () => {
         dispatch(handleShoppingCart(false))
     }
 
-    const skus = Object.keys(shoppingCart).map(item => {
-        const productDetails = getItemInfo(item)
-
-        return {
-            sku: item,
-            size: item.split("_").slice(-1)[0],
-            quantity: shoppingCart[item],
-            ...productDetails
+    useEffect(() => {
+        if (products && shoppingCart) {
+            const helper = Object.keys(shoppingCart).map(item => {
+                const productDetails = getItemInfo(item)
+                if (productDetails.name){
+                    return {
+                        sku: item,
+                        size: item.split("_").slice(-1)[0],
+                        quantity: shoppingCart[item],
+                        ...productDetails
+                    }
+                }
+            })
+            setSkus(helper)
         }
-    })
-
+    }, [products, subtotal, shoppingCart])
 
     return (
         <div className={`sidebar ${openShoppingCart ? "sidebar--is-open" : ""}`}>
@@ -54,9 +59,9 @@ const ShoppingCart = () => {
             </div>
             <div className="sidebar__body sidebar__body--shopping-cart">
                 {
-                    skus && 
+                    skus.length > 0 && 
                     skus.map(item => {
-                        if (item.quantity > 0){
+                        if (item && item.quantity > 0){
                             return <CartProduct key={item.name+item.size} product={item}/>
                         }
                     })

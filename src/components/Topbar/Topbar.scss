@@ -8,12 +8,14 @@
   width: 100%;
   z-index: 1;
   height: 64px;
-  display: flex;
+  display:-webkit-flex;
+     display: -webkit-flex;;
   align-items: center;
 }
 
 .topbar .container {
-  display: flex;
+    display: -webkit-flex;;
+  display:-webkit-flex;
   justify-content: space-between;
 }
 .topbar__logo {
@@ -26,14 +28,15 @@
 }
 
 .topbar__group {
-  display: flex;
+    display: -webkit-flex;;
   justify-content: flex-end;
 }
 
 .topbar__icon, .topbar__icon i {
   align-items: center;
   color: #FFC6FF;
-  display: flex;
+    display: -webkit-flex;;
+  display:-webkit-flex;
   flex-direction: column;
   font-size: 2.25rem;
   font-weight: normal;
@@ -57,7 +60,7 @@
     vertical-align: top;
     margin-top: 12px;
     margin-left: 12px;
-    display: flex;
+    display: -webkit-flex;
     align-items: center;
     justify-content: center;
   }

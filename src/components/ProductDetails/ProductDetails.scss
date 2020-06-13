@@ -1,5 +1,6 @@
 .details {
-    display: flex;
+      display: -webkit-flex;;
+    display:-webkit-flex;
     flex-wrap: wrap;
     flex-direction: row;
     color: #004777;
@@ -16,12 +17,13 @@
 
 .details__image {
     margin: 8px 8px;
-    display: flex;
+    height: auto;
     justify-content: center;
 }
 
 .details__image img {
     max-width: 100%;
+    max-height: auto;
 }
 
 .details__product__name {
