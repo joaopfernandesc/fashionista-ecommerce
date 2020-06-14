@@ -10,6 +10,7 @@ import { loadProducts } from '../../actions'
 
 import './App.scss';
 import ShoppingCart from '../ShoppingCart';
+import Footer from '../../components/Footer/Footer';
 
 function App() {
   const store = useSelector(state => state)
@@ -28,6 +29,7 @@ function App() {
         <SearchForm/>
         <ShoppingCart/>
         <Routes/>
+        <Footer/>
       </BrowserRouter>
     </div>
   );
